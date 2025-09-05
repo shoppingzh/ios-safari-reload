@@ -38,7 +38,7 @@ const items = ref<Item[]>([])
 const windowSize = toReactive(useWindowSize())
 const route = useRoute()
 const count = computed(() => Number(route.query.count) ?? 1000)
-const absolute = computed(() => !!route.query.absolute)
+const absolute = computed(() => route.query.absolute === '1')
 
 function init() {
   let maxX: number = 0
