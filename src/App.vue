@@ -5,9 +5,10 @@
     <div
       v-for="item in items"
       :key="item.id"
-      class="absolute left-0 top-0 p-2 flex items-center justify-center overflow-auto"
+      class="p-2 flex items-center justify-center overflow-auto"
+      :class="{ 'absolute left-0 to-0': absolute }"
       :style="{
-        transform: `translate(${item.x}px, ${item.y}px)`,
+        transform: absolute ? `translate(${item.x}px, ${item.y}px)` : null,
         width: `${item.w}px`,
         height: `${item.h}px`,
         backgroundColor: item.color
@@ -37,6 +38,7 @@ const items = ref<Item[]>([])
 const windowSize = toReactive(useWindowSize())
 const route = useRoute()
 const count = computed(() => Number(route.query.count) ?? 1000)
+const absolute = computed(() => !!route.query.absolute)
 
 function init() {
   let maxX: number = 0
