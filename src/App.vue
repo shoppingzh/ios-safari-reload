@@ -67,7 +67,7 @@ function init() {
       y,
       w: width,
       h: height,
-      content: Random.paragraph(1, 5),
+      content: Random.paragraph(10),
       color: Random.color(),
     })
 
