@@ -13,7 +13,9 @@
         height: `${item.h}px`,
         backgroundColor: item.color
       }">
-      {{ item.content }}
+      <template v-if="route.query.text === '1'">
+        {{ item.content }}
+      </template>
     </div>
   </div>
 </template>
