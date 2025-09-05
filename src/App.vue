@@ -5,8 +5,8 @@
     <div
       v-for="item in items"
       :key="item.id"
-      class="p-2 flex items-center justify-center overflow-auto"
-      :class="{ 'absolute left-0 to-0': absolute }"
+      class="p-2 flex items-center justify-center"
+      :class="{ 'absolute left-0 to-0': absolute, 'overflow-hidden': route.query.overflow === 'hidden', 'overflow-auto': route.query.overflow === 'auto' }"
       :style="{
         transform: absolute ? `translate(${item.x}px, ${item.y}px)` : undefined,
         width: `${item.w}px`,
