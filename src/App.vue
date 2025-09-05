@@ -13,8 +13,13 @@
         height: `${item.h}px`,
         backgroundColor: item.color
       }">
-      <template v-if="route.query.text === '1'">
+      <template v-if="route.query.content === 'text'">
         {{ item.content }}
+      </template>
+      <template v-else-if="route.query.content === 'image'">
+        <div class="w-full h-full">
+          <img src="./assets/vue.svg" class="w-full h-full object-contain">
+        </div>
       </template>
     </div>
   </div>
@@ -62,7 +67,7 @@ function init() {
       y,
       w: width,
       h: height,
-      content: Random.paragraph(5, 15),
+      content: Random.paragraph(1, 5),
       color: Random.color(),
     })
 
