@@ -8,7 +8,7 @@
       class="p-2 flex items-center justify-center overflow-auto"
       :class="{ 'absolute left-0 to-0': absolute }"
       :style="{
-        transform: absolute ? `translate(${item.x}px, ${item.y}px)` : null,
+        transform: absolute ? `translate(${item.x}px, ${item.y}px)` : undefined,
         width: `${item.w}px`,
         height: `${item.h}px`,
         backgroundColor: item.color
