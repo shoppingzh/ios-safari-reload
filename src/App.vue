@@ -41,8 +41,6 @@ const count = computed(() => Number(route.query.count) ?? 1000)
 function init() {
   let maxX: number = 0
   let maxY: number = 0
-  let lineMaxY: number = 0
-
 
   for (let i = 0;i < count.value;i++) {
     const width = Random.integer(100, 300)
