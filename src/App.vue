@@ -1,17 +1,18 @@
 
 
 <template>
-  <div class="w-full h-full overflow-auto relative">
+  <div class="w-full h-full overflow-auto relative" :class="{ 'resizing': resizing }">
     <div
       v-for="item in items"
       :key="item.id"
       class="p-2 flex items-center justify-center"
-      :class="{ 'absolute left-0 to-0': absolute, 'overflow-hidden': route.query.overflow === 'hidden', 'overflow-auto': route.query.overflow === 'auto' }"
+      :class="{ 'absolute left-0 to-0': absolute, }"
       :style="{
         transform: absolute ? `translate(${item.x}px, ${item.y}px)` : undefined,
         width: `${item.w}px`,
         height: `${item.h}px`,
-        backgroundColor: item.color
+        backgroundColor: item.color,
+        overflow: route.query.overflow,
       }">
       <template v-if="route.query.content === 'text'">
         {{ item.content }}
@@ -26,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { toReactive, useWindowSize } from '@vueuse/core'
+import { toReactive, useEventListener, useWindowSize } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { nanoid } from 'nanoid'
 import { Random } from 'mockjs'
@@ -46,6 +47,16 @@ const windowSize = toReactive(useWindowSize())
 const route = useRoute()
 const count = computed(() => Number(route.query.count) ?? 1000)
 const absolute = computed(() => route.query.absolute === '1')
+const resizing = ref(false);
+let timer: number
+
+useEventListener('resize', () => {
+  resizing.value = true;
+  clearTimeout(timer)
+  timer = setTimeout(() => {
+    resizing.value = false;
+  }, 300)
+})
 
 function init() {
   let maxX: number = 0
@@ -84,3 +95,9 @@ watch(count, init)
 </script>
 
 
+
+<style scoped>
+.resizing * {
+  @apply !overflow-hidden;
+}
+</style>
