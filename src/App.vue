@@ -57,7 +57,7 @@ useEventListener(window.visualViewport, 'resize', () => {
   clearTimeout(timer)
   timer = setTimeout(() => {
     resizing.value = false;
-  }, 10000)
+  }, 300)
 })
 
 function init() {
