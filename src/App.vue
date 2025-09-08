@@ -52,7 +52,7 @@ const absolute = computed(() => route.query.absolute === '1')
 const resizing = ref(false);
 let timer: number
 
-useEventListener('resize', () => {
+useEventListener(window.visualViewport, 'resize', () => {
   resizing.value = true;
   clearTimeout(timer)
   timer = setTimeout(() => {
