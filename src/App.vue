@@ -2,6 +2,7 @@
 
 <template>
   {{ resizing }}
+
   <div class="w-full h-full overflow-auto relative" :class="{ 'resizing': resizing }">
     <div
       v-for="item in items"
