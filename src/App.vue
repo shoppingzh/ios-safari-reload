@@ -12,7 +12,7 @@
         width: `${item.w}px`,
         height: `${item.h}px`,
         backgroundColor: item.color,
-        overflow: route.query.overflow,
+        overflow: route.query.overflow as string,
       }">
       <template v-if="route.query.content === 'text'">
         {{ item.content }}
