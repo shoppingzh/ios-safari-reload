@@ -55,7 +55,7 @@ useEventListener('resize', () => {
   clearTimeout(timer)
   timer = setTimeout(() => {
     resizing.value = false;
-  }, 300)
+  }, 10000)
 })
 
 function init() {
