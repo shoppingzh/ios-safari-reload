@@ -1,29 +1,31 @@
 
 
 <template>
-  {{ resizing }}
-
-  <div class="w-full h-full overflow-auto relative" :class="{ 'resizing': resizing }">
-    <div
-      v-for="item in items"
-      :key="item.id"
-      class="p-2 flex items-center justify-center"
-      :class="{ 'absolute left-0 to-0': absolute, }"
-      :style="{
-        transform: absolute ? `translate(${item.x}px, ${item.y}px)` : undefined,
-        width: `${item.w}px`,
-        height: `${item.h}px`,
-        backgroundColor: item.color,
-        overflow: route.query.overflow as string,
-      }">
-      <template v-if="route.query.content === 'text'">
-        {{ item.content }}
-      </template>
-      <template v-else-if="route.query.content === 'image'">
-        <div class="w-full h-full">
-          <img src="./assets/vue.svg" class="w-full h-full object-contain">
+  <div class="w-full h-full bg-gray-100">
+    <div class="w-full h-full overflow-auto relative mx-auto bg-white" :class="{ 'resizing': resizing }" :style="{ width: `${containerWidth}px` }">
+      <div class="origin-top-left scale-[0.3]">
+        <div
+          v-for="item in items"
+          :key="item.id"
+          class="p-2 flex items-center justify-center"
+          :class="{ 'absolute left-0 to-0': absolute, }"
+          :style="{
+            transform: absolute ? `translate(${item.x}px, ${item.y}px)` : undefined,
+            width: `${item.w}px`,
+            height: `${item.h}px`,
+            backgroundColor: item.color,
+            overflow: route.query.overflow as string,
+          }">
+          <template v-if="route.query.content === 'text'">
+            {{ item.content }}
+          </template>
+          <template v-else-if="route.query.content === 'image'">
+            <div class="w-full h-full">
+              <img src="./assets/vue.svg" class="w-full h-full object-contain">
+            </div>
+          </template>
         </div>
-      </template>
+      </div>
     </div>
   </div>
 </template>
