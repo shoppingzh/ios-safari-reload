@@ -45,7 +45,8 @@ interface Item {
   content: string
 }
 const items = ref<Item[]>([])
-const windowSize = toReactive(useWindowSize())
+// const windowSize = toReactive(useWindowSize())
+const containerWidth = computed(() => 1200)
 const route = useRoute()
 const count = computed(() => Number(route.query.count) ?? 1000)
 const absolute = computed(() => route.query.absolute === '1')
@@ -69,7 +70,7 @@ function init() {
     const height = Random.integer(100, 300)
 
     let x: number = maxX, y: number = maxY
-    if (x + width > windowSize.width) {
+    if (x + width > containerWidth.value) {
       x = 0
       maxX = 0
     }
@@ -88,8 +89,6 @@ function init() {
       maxY = Math.max(maxY, maxY + height)
     }
     maxX += width
-
-    
   }
 }
 
