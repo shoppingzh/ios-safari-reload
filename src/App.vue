@@ -3,7 +3,7 @@
 <template>
   <div class="w-full h-full bg-gray-100">
     <div class="w-full h-full overflow-auto relative mx-auto bg-white" :class="{ 'resizing': resizing }" :style="{ width: `${containerWidth}px` }">
-      <div class="origin-top-left scale-[0.3]">
+      <div :class="{ 'origin-top-left scale-[0.3]': route.query.scale === '1' }">
         <div
           v-for="item in items"
           :key="item.id"
